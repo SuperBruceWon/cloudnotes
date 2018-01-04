@@ -4,10 +4,48 @@
 <link rel="stylesheet" href="styles/login.css"/>
 <script type="text/javascript" src="scripts/jquery.min.js">
 </script>
+<script type="text/javascript" src="scripts/basevalue.js"></script>
 <script type="text/javascript">
 $(function(){
 	$("#login").click(function(){
-		alert("-------");
+		//获取请求参数
+		var name = $("#count").val().trim();
+		var password = $("#password").val().trim();
+		//检测格式
+		var ok = true;
+		//清空以前消息
+		$("#count_span").html("");
+		$("#password_span").html("");
+		if(name==""){
+			ok = false;
+			$("#count_span").html("用户名为空");
+		}
+		if(password==""){
+			ok = false;
+			$("#password_span").html("密码为空");
+		}
+		//发送ajax请求'
+		if(ok){
+			$.ajax({
+				url:base_path+"/user/login.do",
+				type:"post",
+				data:{"name":name,"password":password},
+				dataType:"json",
+				success:function(result){
+					if(result.status==0){//登陆成功
+						//存入cookie
+						window.location.href="edit.html";
+					}else if(result.status==1){//用户名错
+						$("#count_span").html(result.msg);
+					}else if(result.status==2){//密码错
+						$("#password_span").html(result.msg);
+					}
+				},
+				error:function(){
+					alert("登录异常");
+				}
+			});
+		}
 	});
 });
 </script>
@@ -25,11 +63,13 @@ $(function(){
 					<dt>
 						<div class='letter'>
 							用户名:&nbsp;<input type="text" name="" id="count" tabindex='1'/>
+						<span id="count_span"></span>
 						</div>
 					</dt>
 					<dt>
 						<div class='letter'>
 							密&nbsp;&nbsp;&nbsp;码:&nbsp;<input type="password" name="" id="password" tabindex='2'/>
+						<span id="password_span"></span>
 						</div>
 					</dt>
 					<dt>
