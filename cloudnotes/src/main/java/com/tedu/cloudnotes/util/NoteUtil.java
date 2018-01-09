@@ -2,10 +2,17 @@ package com.tedu.cloudnotes.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 import org.apache.commons.codec.binary.Base64;
 
 public class NoteUtil {
+	
+	public static String createId(){
+		UUID uuid = UUID.randomUUID();
+		return uuid.toString().replace("-", "");
+	}
+	
 	/**
 	 * 将传入的src加密处理
 	 * @param src 明文字符串
@@ -22,8 +29,9 @@ public class NoteUtil {
 		return s;
 	}
 	public static void main(String[] args) throws NoSuchAlgorithmException {
-		System.out.println(md5("961125"));
-		System.out.println(md5("1235436456dsfsvgsafd"));
+//		System.out.println(md5("961125"));
+//		System.out.println(md5("1235436456dsfsvgsafd"));
+		System.out.println(createId());
 	}
 
 }
