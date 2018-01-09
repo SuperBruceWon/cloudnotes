@@ -1,1 +1,1 @@
-var base_path="http://localhost:8088/cloudnotes";
+var base_Path = "http://localhost:8088/cloudnotes";

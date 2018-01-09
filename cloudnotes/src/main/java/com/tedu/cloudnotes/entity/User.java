@@ -3,11 +3,11 @@ package com.tedu.cloudnotes.entity;
 import java.io.Serializable;
 
 public class User implements Serializable {
-	 private String cn_user_id;    
-	 private String cn_user_name;    
-	 private String cn_user_password;
-	 private String cn_user_token;   
-	 private String cn_user_nick;
+	private String cn_user_id;
+	private String cn_user_name;
+	private String cn_user_password;
+	private String cn_user_token;
+	private String cn_user_nick;
 	public String getCn_user_id() {
 		return cn_user_id;
 	}
@@ -38,6 +38,6 @@ public class User implements Serializable {
 	public void setCn_user_nick(String cn_user_nick) {
 		this.cn_user_nick = cn_user_nick;
 	}
-	 
+
 
 }

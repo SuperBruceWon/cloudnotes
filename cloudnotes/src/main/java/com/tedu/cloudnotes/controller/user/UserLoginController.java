@@ -12,12 +12,14 @@ import com.tedu.cloudnotes.util.NoteResult;
 public class UserLoginController {
 	@Resource
 	private UserService userService;
+
 	@RequestMapping("/user/login.do")
 	@ResponseBody
 	public NoteResult execute(String name,String password){
 		NoteResult result =
-				userService.checkLogin(name, password);
+			userService.checkLogin(name, password);
 		return result;
-		
 	}
+	
+	
 }
